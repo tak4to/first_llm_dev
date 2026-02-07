@@ -1,0 +1,40 @@
+# Kaggle LLM Science Exam Configuration
+
+# OpenAI API settings
+openai:
+  model: "gpt-4o-mini-2024-07-18"  # Base model for fine-tuning
+  finetuned_model: null              # Will be set after fine-tuning
+  temperature: 0.0
+  max_tokens: 16
+
+# ChromaDB RAG settings
+chromadb:
+  persist_directory: "./data/chromadb"
+  collection_name: "wikipedia_science"
+  embedding_model: "text-embedding-3-small"
+  n_results: 5  # Number of documents to retrieve per query
+
+# Data settings
+data:
+  raw_dir: "./data/raw"
+  processed_dir: "./data/processed"
+  train_file: "./data/raw/train.csv"
+  test_file: "./data/raw/test.csv"
+  finetune_file: "./data/processed/finetune_train.jsonl"
+  validation_file: "./data/processed/finetune_val.jsonl"
+  submission_file: "./data/submission.csv"
+  wikipedia_dir: "./data/wikipedia"
+
+# Fine-tuning settings
+finetune:
+  n_epochs: 3
+  batch_size: 4
+  learning_rate_multiplier: 1.8
+  validation_split: 0.1
+  suffix: "kaggle-science-exam"
+
+# Inference settings
+inference:
+  use_rag: true
+  top_k_predictions: 3
+  batch_size: 10
